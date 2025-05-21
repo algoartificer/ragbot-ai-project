@@ -96,7 +96,7 @@ def generate_answer(query):
 # -------- Example Query --------
 
 if __name__ == "__main__":
-    query = "What can you tell me about abc123?"
+    query = "Please provide a list of ways a third party provider could sell telematics data to a P&C insurance company for profit"
     answer = generate_answer(query)
     print("Question:", query)
     print("Answer:", answer)
