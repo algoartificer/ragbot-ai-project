@@ -1,0 +1,6 @@
+openai
+chromadb
+docx
+PyPDF2
+certifi
+#-e .
