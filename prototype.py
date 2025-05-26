@@ -4,22 +4,18 @@ from PyPDF2 import PdfReader
 from openai import OpenAI
 import httpx
 
-#BASE_URL = "myurl.com"
-
 # Attempt to read the OpenAI API key from either environment variable.
 # chromadb by default looks for ``CHROMA_OPENAI_API_KEY`` while other
 # tooling commonly uses ``OPENAI_API_KEY``. To avoid runtime errors when
 # only one of these variables is defined, check both and fall back to the
 # other when necessary.
-API_KEY = os.getenv("CHROMA_OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
-
-if not API_KEY:
+API_KEY = os.getenv("OPENAI_API_KEY")
+CHROMA_API_KEY = os.getenv("CHROMA_OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
+if not CHROMA_API_KEY:
     raise EnvironmentError(
-        "Set CHROMA_OPENAI_API_KEY or OPENAI_API_KEY environment variable"
+        "Set CHROMA_OPENAI_API_KEY"
     )
 
-
-#CA_BUNDLE_PATH = os.getenv("CA_BUNDLE_PATH")
 
 
 # -------- Load PDF Documents --------
