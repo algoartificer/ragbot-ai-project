@@ -70,8 +70,12 @@ def generate_answer(query):
         f"Question: {query}\nAnswer:"
     )
     
-    # Initialize http client
-    #http_client = httpx.Client(verify=CA_BUNDLE_PATH)
+
+    # Initialize http client if a custom CA bundle is configured. The
+    # variable is commented out above by default, so guard against it
+    # being undefined to avoid a NameError when closing the client.
+    http_client = None
+    # http_client = httpx.Client(verify=CA_BUNDLE_PATH)
 
     # Initialize OpenAI client
     client = OpenAI(
@@ -89,8 +93,9 @@ def generate_answer(query):
         temperature=0.2
     )
 
-    # Close the http client
-    http_client.close()
+    # Close the http client if it was created
+    if http_client is not None:
+        http_client.close()
     return response.choices[0].message.content
 
 # -------- Example Query --------
